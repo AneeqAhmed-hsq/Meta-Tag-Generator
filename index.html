@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meta Tag Generator Online – Free SEO Meta Tags Tool | FreeMegaTools</title>
+<meta name="description" content="Free meta tag generator online. Generate SEO, Open Graph, Twitter Card, and blogger meta tags instantly. No signup needed."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f4f0;--surface:#fff;--surface2:#f0efe9;--surface3:#e8e7e1;
+  --border:#e2e0d8;--accent:#2563eb;--accent2:#1d4ed8;--accent-light:#eff6ff;
+  --green:#16a34a;--green-light:#f0fdf4;--orange:#c2410c;--orange-light:#fff7ed;
+  --purple:#7c3aed;--purple-light:#f5f3ff;
+  --text:#111110;--text2:#48473f;--text3:#79786f;--text4:#a8a79f;
+  --r:12px;--r-sm:8px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+
+main{max-width:900px;margin:0 auto;padding:32px 18px 60px}
+
+.hero{text-align:center;margin-bottom:28px}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:14px;letter-spacing:.3px}
+.hero-chip svg{width:13px;height:13px}
+.hero h1{font-size:clamp(22px,4vw,32px);font-weight:700;letter-spacing:-.5px;margin-bottom:8px;line-height:1.2}
+.hero p{font-size:14px;color:var(--text3);max-width:480px;margin:0 auto}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.card-head{padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.card-dot{width:8px;height:8px;border-radius:50%}
+.card-head h3{font-size:13px;font-weight:600;color:var(--text2)}
+.card-body{padding:16px}
+
+label{display:block;font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+input[type=text],input[type=url],textarea,select{
+  width:100%;padding:9px 12px;border:1.5px solid var(--border);
+  border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:13px;
+  color:var(--text);background:var(--surface);outline:none;transition:border-color .2s;
+}
+input[type=text]:focus,input[type=url]:focus,textarea:focus,select:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:72px;line-height:1.5}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2379786f' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;-webkit-appearance:none}
+.field{margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+
+.char-count{font-size:11px;color:var(--text4);text-align:right;margin-top:3px;font-family:'DM Mono',monospace}
+.char-count.warn{color:#d97706}
+.char-count.over{color:#dc2626}
+
+.tab-row{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.tab-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:var(--surface);color:var(--text3);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent)}
+
+.output-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+.output-head{padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.output-head h3{font-size:13px;font-weight:600;color:var(--text2)}
+.copy-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.copy-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.copy-btn svg{width:13px;height:13px}
+.code-block{padding:16px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.8;color:var(--text2);white-space:pre-wrap;word-break:break-all;background:var(--surface);max-height:320px;overflow-y:auto}
+.code-block .tag{color:#1d4ed8}
+.code-block .attr{color:#16a34a}
+.code-block .val{color:#c2410c}
+
+.generate-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(37,99,235,.25);margin-bottom:14px}
+.generate-btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.generate-btn svg{width:18px;height:18px}
+
+.preview-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:14px;overflow:hidden}
+.google-preview{padding:16px;border-bottom:1px solid var(--border)}
+.gp-url{font-size:12px;color:var(--green);margin-bottom:2px;font-family:'DM Mono',monospace}
+.gp-title{font-size:18px;color:#1a0dab;font-weight:400;margin-bottom:4px;cursor:pointer;line-height:1.3}
+.gp-title:hover{text-decoration:underline}
+.gp-desc{font-size:13px;color:#4d5156;line-height:1.5}
+.gp-label{font-size:11px;font-weight:600;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;padding:8px 16px;background:var(--surface2)}
+
+.og-preview{padding:16px}
+.og-box{border:1.5px solid var(--border);border-radius:var(--r-sm);overflow:hidden}
+.og-img{width:100%;height:140px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text4)}
+.og-info{padding:12px;background:#f0f2f5}
+.og-domain{font-size:11px;color:#8a8d91;text-transform:uppercase;margin-bottom:3px}
+.og-title-p{font-size:14px;font-weight:600;color:#1c1e21;margin-bottom:3px;line-height:1.3}
+.og-desc-p{font-size:13px;color:#606770;line-height:1.4}
+.og-label{font-size:11px;font-weight:600;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;padding:8px 16px 4px;background:var(--surface2);border-top:1px solid var(--border)}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px;text-align:center}
+.stat-val{font-size:20px;font-weight:700;font-family:'DM Mono',monospace;color:var(--text);line-height:1}
+.stat-val.good{color:var(--green)}
+.stat-val.warn{color:#d97706}
+.stat-val.bad{color:#dc2626}
+.stat-lbl{font-size:11px;color:var(--text4);margin-top:3px;text-transform:uppercase;letter-spacing:.4px}
+
+.toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;padding:10px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:999}
+.toast.show{opacity:1;transform:translateY(0)}
+
+.section-divider{height:1px;background:var(--border);margin:20px 0}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+    Meta Tag Generator Online
+  </div>
+  <h1>Free <span style="color:var(--accent)">Meta Tag Generator</span> Tool</h1>
+  <p>Generate SEO, Open Graph, Twitter Card &amp; Blogger meta tags instantly — no signup, 100% free.</p>
+</div>
+
+<!-- TABS -->
+<div class="tab-row">
+  <button class="tab-btn active" onclick="setTab('seo')">🔍 SEO Tags</button>
+  <button class="tab-btn" onclick="setTab('og')">📘 Open Graph</button>
+  <button class="tab-btn" onclick="setTab('twitter')">🐦 Twitter Card</button>
+  <button class="tab-btn" onclick="setTab('blogger')">📝 Blogger</button>
+</div>
+
+<!-- SEO SECTION -->
+<div id="tab-seo">
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:var(--accent)"></div><h3>Basic SEO Information</h3></div>
+      <div class="card-body">
+        <div class="field">
+          <label>Page Title</label>
+          <input type="text" id="seo-title" placeholder="Your page title here..." maxlength="70" oninput="updateChars('seo-title','tc-title',60,70);livePreview()"/>
+          <div class="char-count" id="tc-title">0 / 60 recommended</div>
+        </div>
+        <div class="field">
+          <label>Meta Description</label>
+          <textarea id="seo-desc" placeholder="Write a compelling description of your page..." maxlength="170" oninput="updateChars('seo-desc','tc-desc',155,170);livePreview()"></textarea>
+          <div class="char-count" id="tc-desc">0 / 155 recommended</div>
+        </div>
+        <div class="field">
+          <label>Keywords (comma separated)</label>
+          <input type="text" id="seo-keywords" placeholder="keyword1, keyword2, keyword3"/>
+        </div>
+        <div class="field">
+          <label>Page URL</label>
+          <input type="url" id="seo-url" placeholder="https://yoursite.com/page" oninput="livePreview()"/>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:var(--green)"></div><h3>Advanced Settings</h3></div>
+      <div class="card-body">
+        <div class="field">
+          <label>Author Name</label>
+          <input type="text" id="seo-author" placeholder="John Doe"/>
+        </div>
+        <div class="field">
+          <label>Robots Setting</label>
+          <select id="seo-robots">
+            <option value="index, follow">Index, Follow (recommended)</option>
+            <option value="noindex, follow">No Index, Follow</option>
+            <option value="index, nofollow">Index, No Follow</option>
+            <option value="noindex, nofollow">No Index, No Follow</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Content Language</label>
+          <select id="seo-lang">
+            <option value="en">English</option>
+            <option value="ur">Urdu</option>
+            <option value="ar">Arabic</option>
+            <option value="hi">Hindi</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Viewport</label>
+          <select id="seo-viewport">
+            <option value="width=device-width, initial-scale=1.0">Default (Responsive)</option>
+            <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">No Zoom</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Charset</label>
+          <select id="seo-charset">
+            <option value="UTF-8">UTF-8 (recommended)</option>
+            <option value="ISO-8859-1">ISO-8859-1</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OG SECTION -->
+<div id="tab-og" style="display:none">
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#1877f2"></div><h3>Open Graph / Facebook</h3></div>
+      <div class="card-body">
+        <div class="field"><label>OG Title</label><input type="text" id="og-title" placeholder="Title for social sharing..." oninput="livePreview()"/></div>
+        <div class="field"><label>OG Description</label><textarea id="og-desc" placeholder="Description shown when shared on Facebook..." oninput="livePreview()"></textarea></div>
+        <div class="field"><label>OG Image URL</label><input type="url" id="og-image" placeholder="https://yoursite.com/image.jpg" oninput="livePreview()"/></div>
+        <div class="field"><label>OG URL</label><input type="url" id="og-url" placeholder="https://yoursite.com/page"/></div>
+        <div class="field"><label>OG Type</label>
+          <select id="og-type">
+            <option value="website">Website</option>
+            <option value="article">Article</option>
+            <option value="product">Product</option>
+            <option value="video">Video</option>
+          </select>
+        </div>
+        <div class="field"><label>Site Name</label><input type="text" id="og-sitename" placeholder="FreeMegaTools"/></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#1877f2"></div><h3>Facebook Preview</h3></div>
+      <div class="card-body" style="padding:12px">
+        <div class="og-box">
+          <div class="og-img" id="og-preview-img">📷 OG Image Preview</div>
+          <div class="og-info">
+            <div class="og-domain" id="og-preview-domain">yoursite.com</div>
+            <div class="og-title-p" id="og-preview-title">Your OG title here</div>
+            <div class="og-desc-p" id="og-preview-desc">Your OG description will appear here when shared on Facebook...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TWITTER SECTION -->
+<div id="tab-twitter" style="display:none">
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#000"></div><h3>Twitter / X Card</h3></div>
+      <div class="card-body">
+        <div class="field"><label>Card Type</label>
+          <select id="tw-type">
+            <option value="summary_large_image">Summary Large Image (recommended)</option>
+            <option value="summary">Summary</option>
+            <option value="app">App</option>
+          </select>
+        </div>
+        <div class="field"><label>Twitter Title</label><input type="text" id="tw-title" placeholder="Title for Twitter card..."/></div>
+        <div class="field"><label>Twitter Description</label><textarea id="tw-desc" placeholder="Description shown on Twitter..."></textarea></div>
+        <div class="field"><label>Twitter Image URL</label><input type="url" id="tw-image" placeholder="https://yoursite.com/image.jpg"/></div>
+        <div class="field"><label>Twitter Username</label><input type="text" id="tw-site" placeholder="@yourusername"/></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#000"></div><h3>Tips for Twitter Cards</h3></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2)">
+            <div style="font-weight:600;margin-bottom:4px">✅ Image Size</div>
+            <div style="color:var(--text3)">Use 1200×628px for large image cards. Minimum 300×157px for summary cards.</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2)">
+            <div style="font-weight:600;margin-bottom:4px">✅ Title Length</div>
+            <div style="color:var(--text3)">Keep titles under 70 characters to avoid truncation on mobile.</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2)">
+            <div style="font-weight:600;margin-bottom:4px">✅ Description</div>
+            <div style="color:var(--text3)">Max 200 characters. Make it compelling — this is your CTA on social media.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOGGER SECTION -->
+<div id="tab-blogger" style="display:none">
+  <div class="grid">
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#ff5722"></div><h3>Blogger Meta Tags</h3></div>
+      <div class="card-body">
+        <div class="field"><label>Blog Title</label><input type="text" id="bl-title" placeholder="Your Blogger blog title..."/></div>
+        <div class="field"><label>Blog Description</label><textarea id="bl-desc" placeholder="Your Blogger blog description..."></textarea></div>
+        <div class="field"><label>Blog URL</label><input type="url" id="bl-url" placeholder="https://yourblog.blogspot.com"/></div>
+        <div class="field"><label>Blog Keywords</label><input type="text" id="bl-keywords" placeholder="blogging, tips, tutorial..."/></div>
+        <div class="field"><label>Blog Language</label>
+          <select id="bl-lang">
+            <option value="en">English</option>
+            <option value="ur">Urdu</option>
+            <option value="hi">Hindi</option>
+            <option value="ar">Arabic</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-dot" style="background:#ff5722"></div><h3>How to Add to Blogger</h3></div>
+      <div class="card-body">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start">
+            <div style="background:var(--accent);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</div>
+            <div>Blogger Dashboard → Theme → Edit HTML</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start">
+            <div style="background:var(--accent);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</div>
+            <div>Find the <code style="background:var(--surface3);padding:1px 5px;border-radius:4px;font-family:'DM Mono',monospace">&lt;head&gt;</code> tag in the template</div>
+          </div>
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start">
+            <div style="background:var(--accent);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</div>
+            <div>Paste the generated meta tags right after <code style="background:var(--surface3);padding:1px 5px;border-radius:4px;font-family:'DM Mono',monospace">&lt;head&gt;</code></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--text2);display:flex;gap:10px;align-items:flex-start">
+            <div style="background:var(--green);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">4</div>
+            <div>Click Save — done! Google will crawl your meta tags within 1-3 days.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GENERATE BUTTON -->
+<button class="generate-btn" onclick="generateAll()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+  Generate Meta Tags
+</button>
+
+<!-- LIVE PREVIEW -->
+<div class="preview-card" id="previewCard">
+  <div class="gp-label">🔍 Google Search Preview</div>
+  <div class="google-preview">
+    <div class="gp-url" id="preview-url">https://yoursite.com/page</div>
+    <div class="gp-title" id="preview-title">Your Page Title — Will Appear Here</div>
+    <div class="gp-desc" id="preview-desc">Your meta description will appear here in Google search results. Make it compelling to improve click-through rate...</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row" id="statsRow" style="display:none">
+  <div class="stat-box"><div class="stat-val" id="stat-title-len">0</div><div class="stat-lbl">Title chars</div></div>
+  <div class="stat-box"><div class="stat-val" id="stat-desc-len">0</div><div class="stat-lbl">Desc chars</div></div>
+  <div class="stat-box"><div class="stat-val" id="stat-score">—</div><div class="stat-lbl">SEO score</div></div>
+</div>
+
+<!-- OUTPUT -->
+<div id="outputSection" style="display:none">
+  <div class="output-card" id="outputSEO">
+    <div class="output-head">
+      <h3>Generated Meta Tags — Copy &amp; Paste into &lt;head&gt;</h3>
+      <button class="copy-btn" onclick="copyOutput('outputCode')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy All
+      </button>
+    </div>
+    <div class="code-block" id="outputCode"></div>
+  </div>
+</div>
+
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+let activeTab = 'seo';
+
+function setTab(tab) {
+  ['seo','og','twitter','blogger'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t===tab ? '' : 'none';
+    document.querySelectorAll('.tab-btn').forEach((b,i) => {
+      b.classList.toggle('active', ['seo','og','twitter','blogger'][i]===tab);
+    });
+  });
+  activeTab = tab;
+}
+
+function updateChars(inputId, counterId, rec, max) {
+  const el = document.getElementById(inputId);
+  const counter = document.getElementById(counterId);
+  const len = el.value.length;
+  counter.textContent = len + ' / ' + rec + ' recommended';
+  counter.className = 'char-count' + (len > max ? ' over' : len > rec ? ' warn' : '');
+}
+
+function livePreview() {
+  const title = document.getElementById('seo-title')?.value || '';
+  const desc = document.getElementById('seo-desc')?.value || '';
+  const url = document.getElementById('seo-url')?.value || 'https://yoursite.com/page';
+  document.getElementById('preview-title').textContent = title || 'Your Page Title — Will Appear Here';
+  document.getElementById('preview-desc').textContent = desc || 'Your meta description will appear here in Google search results...';
+  try { document.getElementById('preview-url').textContent = new URL(url).href; } catch(e) { document.getElementById('preview-url').textContent = url || 'https://yoursite.com'; }
+
+  // OG preview
+  const ogTitle = document.getElementById('og-title')?.value;
+  const ogDesc = document.getElementById('og-desc')?.value;
+  const ogImg = document.getElementById('og-image')?.value;
+  const ogUrl = document.getElementById('og-url')?.value;
+  if(ogTitle) document.getElementById('og-preview-title').textContent = ogTitle;
+  if(ogDesc) document.getElementById('og-preview-desc').textContent = ogDesc;
+  if(ogUrl) { try { document.getElementById('og-preview-domain').textContent = new URL(ogUrl).hostname; } catch(e){} }
+  if(ogImg) { document.getElementById('og-preview-img').innerHTML = `<img src="${ogImg}" style="width:100%;height:140px;object-fit:cover" onerror="this.parentElement.textContent='📷 Image not found'">`; }
+}
+
+function generateAll() {
+  const tab = activeTab;
+  let lines = [];
+  let score = 0;
+
+  const e = id => document.getElementById(id)?.value?.trim() || '';
+
+  if(tab === 'seo') {
+    const title = e('seo-title'), desc = e('seo-desc'), kw = e('seo-keywords');
+    const auth = e('seo-author'), robots = e('seo-robots'), lang = e('seo-lang');
+    const vp = e('seo-viewport'), cs = e('seo-charset');
+    lines.push(`<!-- ✅ Charset & Viewport -->`);
+    lines.push(`<meta charset="${cs}">`);
+    lines.push(`<meta name="viewport" content="${vp}">`);
+    lines.push(``);
+    lines.push(`<!-- ✅ SEO Meta Tags -->`);
+    if(title){ lines.push(`<title>${title}</title>`); score+=25; }
+    if(desc){ lines.push(`<meta name="description" content="${desc}">`); score+=25; }
+    if(kw) lines.push(`<meta name="keywords" content="${kw}">`);
+    if(auth) lines.push(`<meta name="author" content="${auth}">`);
+    lines.push(`<meta name="robots" content="${robots || 'index, follow'}">`);
+    lines.push(`<meta http-equiv="Content-Language" content="${lang || 'en'}">`);
+    lines.push(`<meta name="revisit-after" content="7 days">`);
+    lines.push(`<meta name="rating" content="general">`);
+    if(title && desc) score += 25;
+    if(kw) score += 10;
+    if(auth) score += 5;
+    score = Math.min(100, score + 10);
+
+    // stats
+    document.getElementById('stat-title-len').textContent = title.length;
+    document.getElementById('stat-title-len').className = 'stat-val' + (title.length >= 40 && title.length <= 60 ? ' good' : title.length > 60 ? ' warn' : ' bad');
+    document.getElementById('stat-desc-len').textContent = desc.length;
+    document.getElementById('stat-desc-len').className = 'stat-val' + (desc.length >= 120 && desc.length <= 155 ? ' good' : desc.length > 155 ? ' warn' : ' bad');
+    document.getElementById('stat-score').textContent = score + '%';
+    document.getElementById('stat-score').className = 'stat-val' + (score >= 80 ? ' good' : score >= 50 ? ' warn' : ' bad');
+    document.getElementById('statsRow').style.display = 'grid';
+  }
+
+  else if(tab === 'og') {
+    const t=e('og-title'),d=e('og-desc'),img=e('og-image'),url=e('og-url'),type=e('og-type'),site=e('og-sitename');
+    lines.push(`<!-- ✅ Open Graph / Facebook Meta Tags -->`);
+    if(t) lines.push(`<meta property="og:title" content="${t}">`);
+    if(d) lines.push(`<meta property="og:description" content="${d}">`);
+    lines.push(`<meta property="og:type" content="${type||'website'}">`);
+    if(url) lines.push(`<meta property="og:url" content="${url}">`);
+    if(img) lines.push(`<meta property="og:image" content="${img}">`);
+    lines.push(`<meta property="og:image:width" content="1200">`);
+    lines.push(`<meta property="og:image:height" content="628">`);
+    if(site) lines.push(`<meta property="og:site_name" content="${site}">`);
+    lines.push(`<meta property="og:locale" content="en_US">`);
+  }
+
+  else if(tab === 'twitter') {
+    const type=e('tw-type'),t=e('tw-title'),d=e('tw-desc'),img=e('tw-image'),site=e('tw-site');
+    lines.push(`<!-- ✅ Twitter / X Card Meta Tags -->`);
+    lines.push(`<meta name="twitter:card" content="${type||'summary_large_image'}">`);
+    if(t) lines.push(`<meta name="twitter:title" content="${t}">`);
+    if(d) lines.push(`<meta name="twitter:description" content="${d}">`);
+    if(img) lines.push(`<meta name="twitter:image" content="${img}">`);
+    if(site) lines.push(`<meta name="twitter:site" content="${site}">`);
+    if(site) lines.push(`<meta name="twitter:creator" content="${site}">`);
+  }
+
+  else if(tab === 'blogger') {
+    const t=e('bl-title'),d=e('bl-desc'),url=e('bl-url'),kw=e('bl-keywords'),lang=e('bl-lang');
+    lines.push(`<!-- ✅ Blogger Meta Tags Generator -->`);
+    lines.push(`<!-- Add these tags in Blogger → Theme → Edit HTML → after <head> -->`);
+    lines.push(``);
+    lines.push(`<meta charset="UTF-8">`);
+    lines.push(`<meta name="viewport" content="width=device-width, initial-scale=1.0">`);
+    if(t) lines.push(`<title>${t}</title>`);
+    if(d) lines.push(`<meta name="description" content="${d}">`);
+    if(kw) lines.push(`<meta name="keywords" content="${kw}">`);
+    lines.push(`<meta name="robots" content="index, follow">`);
+    lines.push(`<meta http-equiv="Content-Language" content="${lang||'en'}">`);
+    lines.push(`<meta name="revisit-after" content="3 days">`);
+    if(url){ lines.push(``);
+      lines.push(`<!-- ✅ Open Graph for Blogger -->`);
+      lines.push(`<meta property="og:type" content="blog">`);
+      lines.push(`<meta property="og:url" content="${url}">`);
+      if(t) lines.push(`<meta property="og:title" content="${t}">`);
+      if(d) lines.push(`<meta property="og:description" content="${d}">`);
+    }
+  }
+
+  const code = lines.join('\n');
+  const highlighted = code
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;\/?[\w:]+)/g,'<span class="tag">$1</span>')
+    .replace(/([\w:-]+=)/g,'<span class="attr">$1</span>')
+    .replace(/"([^"]*)"/g,'"<span class="val">$1</span>"');
+
+  document.getElementById('outputCode').innerHTML = highlighted;
+  document.getElementById('outputCode').dataset.raw = code;
+  document.getElementById('outputSection').style.display = 'block';
+  document.getElementById('outputSection').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function copyOutput(id) {
+  const el = document.getElementById(id);
+  const text = el.dataset.raw || el.textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('✅ Meta tags copied to clipboard!'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Auto-resize for iFrame
+function sendHeight(){ window.parent.postMessage({frameHeight:document.body.scrollHeight},'*'); }
+setInterval(sendHeight,500);
+window.addEventListener('load',sendHeight);
+window.addEventListener('resize',sendHeight);
+</script>
+</body>
+</html>
